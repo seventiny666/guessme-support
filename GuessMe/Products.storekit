@@ -1,0 +1,157 @@
+{
+  "identifier" : "E8F7A2B1",
+  "nonRenewingSubscriptions" : [
+    {
+      "displayPrice" : "24.99",
+      "familyShareable" : true,
+      "internalID" : "6738492020",
+      "localizations" : [
+        {
+          "description" : "一次性购买，永久解锁所有专业版功能。无需订阅，买断制使用。",
+          "displayName" : "专业版终身版",
+          "locale" : "zh_CN"
+        },
+        {
+          "description" : "One-time purchase to unlock all premium features forever. No subscription required.",
+          "displayName" : "Pro Lifetime",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.seventinygame.app.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonRenewingSubscription"
+    }
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6738492015",
+    "_developerTeamID" : "346F2WR689",
+    "_lastSynchronizedDate" : 761702400.0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21482395",
+      "localizations" : [
+        {
+          "description" : "解锁所有游戏分类和专业版功能",
+          "displayName" : "专业版订阅",
+          "locale" : "zh_CN"
+        },
+        {
+          "description" : "Unlock all game categories and premium features",
+          "displayName" : "Pro Subscription",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "Pro Subscription",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : true,
+          "groupNumber" : 1,
+          "internalID" : "6738492018",
+          "introductoryOffer" : {
+            "internalID" : "6738492019",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
+          "localizations" : [
+            {
+              "description" : "解锁所有游戏分类。前3天免费试用，之后每周自动续订。",
+              "displayName" : "专业版周订阅",
+              "locale" : "zh_CN"
+            },
+            {
+              "description" : "Unlock all game categories. 3-day free trial, then auto-renews weekly.",
+              "displayName" : "Pro Weekly Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.seventinygame.app.weekly",
+          "recurringSubscriptionPeriod" : "P1W",
+          "referenceName" : "Pro Weekly Subscription",
+          "subscriptionGroupID" : "21482395",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "3.99",
+          "familyShareable" : true,
+          "groupNumber" : 2,
+          "internalID" : "6738492021",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "解锁所有游戏分类，每月自动续订。",
+              "displayName" : "专业版月订阅",
+              "locale" : "zh_CN"
+            },
+            {
+              "description" : "Unlock all game categories. Auto-renews monthly.",
+              "displayName" : "Pro Monthly Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.seventinygame.app.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly Subscription",
+          "subscriptionGroupID" : "21482395",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "19.99",
+          "familyShareable" : true,
+          "groupNumber" : 3,
+          "internalID" : "6738492016",
+          "introductoryOffer" : {
+            "internalID" : "6738492017",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
+          "localizations" : [
+            {
+              "description" : "解锁所有游戏分类，享受完整游戏体验。前3天免费试用，之后每年自动续订。最超值选择！",
+              "displayName" : "专业版年度订阅",
+              "locale" : "zh_CN"
+            },
+            {
+              "description" : "Unlock all game categories and enjoy the full experience. 3-day free trial, then auto-renews yearly. Best value!",
+              "displayName" : "Pro Yearly Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.seventinygame.app.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Yearly Subscription",
+          "subscriptionGroupID" : "21482395",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
