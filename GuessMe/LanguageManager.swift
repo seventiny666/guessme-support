@@ -45,8 +45,8 @@ class LanguageManager: ObservableObject {
     static let shared = LanguageManager()
     
     private init() {
-        let savedLanguage = UserDefaults.standard.string(forKey: "appLanguage") ?? "zh-Hans"
-        self.currentLanguage = AppLanguage(rawValue: savedLanguage) ?? .simplifiedChinese
+        let savedLanguage = UserDefaults.standard.string(forKey: "appLanguage") ?? "en"
+        self.currentLanguage = AppLanguage(rawValue: savedLanguage) ?? .english
     }
     
     // 获取本地化文本
@@ -58,7 +58,7 @@ class LanguageManager: ObservableObject {
 // 本地化字符串
 struct LocalizedStrings {
     static func getString(_ key: String, language: AppLanguage) -> String {
-        let strings = allStrings[language] ?? allStrings[.simplifiedChinese]!
+        let strings = allStrings[language] ?? allStrings[.english]!
         return strings[key] ?? key
     }
 
@@ -66,6 +66,7 @@ struct LocalizedStrings {
         .simplifiedChinese: [
             "app_title": "你比划我猜",
             "upgrade_to_pro": "升级VIP",
+            "pro_activated": "专业版已激活",
             "create_category": "创建类型",
             "read_privacy": "阅读隐私政策",
             "game_rules": "游戏规则",
@@ -139,9 +140,26 @@ struct LocalizedStrings {
             "no_ads": "无广告",
             "custom_words_categories": "自定义词汇和分类",
             "free_lifetime_updates": "免费终身更新",
-            "terms_apply": "条款适用。订阅将自动续费，除非取消。",
+            "terms_apply": "购买确认后将从您的iTunes账户扣费。订阅将自动续费，除非在当前订阅期结束前至少24小时取消。",
             "privacy_policy": "隐私政策",
             "terms_of_use": "使用条款",
+            "terms_of_use_title": "使用条款",
+            "terms_last_updated": "最后更新日期：2026年2月22日",
+            "terms_section_1_title": "1. 条款接受",
+            "terms_section_1_content": "通过下载、安装或使用你比划我猜，您同意受本使用条款的约束。如果您不同意这些条款，请不要使用本应用。",
+            "terms_section_2_title": "2. 服务描述",
+            "terms_section_2_content": "你比划我猜是一款提供词汇分类的聚会游戏应用，用于娱乐目的。应用通过订阅提供免费和付费内容。",
+            "terms_section_3_title": "3. 订阅条款",
+            "terms_section_3_content": "专业版订阅提供额外的游戏分类。订阅将自动续费，除非在当前订阅期结束前至少24小时取消。购买确认后将从您的iTunes账户扣费。",
+            "terms_section_4_title": "4. 用户行为",
+            "terms_section_4_content": "您同意仅将应用用于合法目的并遵守本条款。您不得以任何可能损害、禁用或损坏应用的方式使用应用。",
+            "terms_section_5_title": "5. 知识产权",
+            "terms_section_5_content": "应用中的所有内容，包括但不限于文本、图形、标识和软件，均为你比划我猜的财产，受版权和其他知识产权法保护。",
+            "terms_section_6_title": "6. 责任限制",
+            "terms_section_6_content": "你比划我猜不对因您使用应用而产生的任何间接、偶然、特殊或后果性损害承担责任。",
+            "terms_section_7_title": "7. 联系信息",
+            "terms_section_7_content": "如果您对本使用条款有任何疑问，请通过seventiny007@126.com联系我们。",
+            "terms_copyright": "© 2026 你比划我猜. 保留所有权利。",
             "restore": "恢复",
             "3_day_free_trial": "3天免费试用",
             "one_time_pay": "一次性付费",
@@ -158,6 +176,7 @@ struct LocalizedStrings {
         .traditionalChinese: [
             "app_title": "你比劃我猜",
             "upgrade_to_pro": "升級VIP",
+            "pro_activated": "專業版已激活",
             "create_category": "創建類型",
             "read_privacy": "閱讀隱私政策",
             "game_rules": "遊戲規則",
@@ -250,6 +269,7 @@ struct LocalizedStrings {
         .english: [
             "app_title": "GuessMe",
             "upgrade_to_pro": "Upgrade VIP",
+            "pro_activated": "Pro Activated",
             "create_category": "Create Category",
             "read_privacy": "Privacy Policy",
             "game_rules": "Game Rules",
@@ -323,9 +343,26 @@ struct LocalizedStrings {
             "no_ads": "No ads",
             "custom_words_categories": "Custom words & categories",
             "free_lifetime_updates": "Free lifetime updates",
-            "terms_apply": "Terms apply. Subscription automatically renews unless cancelled.",
+            "terms_apply": "Payment will be charged to your iTunes account at confirmation of purchase. Subscription automatically renews unless canceled at least 24 hours before the end of the current period.",
             "privacy_policy": "Privacy Policy",
             "terms_of_use": "Terms of Use",
+            "terms_of_use_title": "Terms of Use",
+            "terms_last_updated": "Last Updated: February 22, 2026",
+            "terms_section_1_title": "1. Acceptance of Terms",
+            "terms_section_1_content": "By downloading, installing, or using GuessMe, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use the app.",
+            "terms_section_2_title": "2. Description of Service",
+            "terms_section_2_content": "GuessMe is a charades game app that provides word categories for entertainment purposes. The app offers both free and premium content through subscription.",
+            "terms_section_3_title": "3. Subscription Terms",
+            "terms_section_3_content": "Premium subscriptions provide access to additional game categories. Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Payment will be charged to your iTunes account at confirmation of purchase.",
+            "terms_section_4_title": "4. User Conduct",
+            "terms_section_4_content": "You agree to use the app only for lawful purposes and in accordance with these Terms. You may not use the app in any way that could damage, disable, or impair the app.",
+            "terms_section_5_title": "5. Intellectual Property",
+            "terms_section_5_content": "All content in the app, including but not limited to text, graphics, logos, and software, is the property of GuessMe and is protected by copyright and other intellectual property laws.",
+            "terms_section_6_title": "6. Limitation of Liability",
+            "terms_section_6_content": "GuessMe shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of the app.",
+            "terms_section_7_title": "7. Contact Information",
+            "terms_section_7_content": "If you have any questions about these Terms of Use, please contact us at seventiny007@126.com",
+            "terms_copyright": "© 2026 GuessMe. All rights reserved.",
             "restore": "Restore",
             "3_day_free_trial": "3-day free trial",
             "one_time_pay": "ONE-TIME PAY",
@@ -342,6 +379,7 @@ struct LocalizedStrings {
         .japanese: [
             "app_title": "ジェスチャーゲーム",
             "upgrade_to_pro": "VIPにアップグレード",
+            "pro_activated": "プロ版有効",
             "create_category": "カテゴリを作成",
             "read_privacy": "プライバシーポリシー",
             "game_rules": "ゲームルール",
@@ -434,6 +472,7 @@ struct LocalizedStrings {
         .korean: [
             "app_title": "몸으로 말해요",
             "upgrade_to_pro": "VIP 업그레이드",
+            "pro_activated": "프로 활성화됨",
             "create_category": "카테고리 만들기",
             "read_privacy": "개인정보 보호정책",
             "game_rules": "게임 규칙",
@@ -526,6 +565,7 @@ struct LocalizedStrings {
         .spanish: [
             "app_title": "Adivina el Gesto",
             "upgrade_to_pro": "Actualizar VIP",
+            "pro_activated": "Pro Activado",
             "create_category": "Crear Categoría",
             "read_privacy": "Política de Privacidad",
             "game_rules": "Reglas del Juego",

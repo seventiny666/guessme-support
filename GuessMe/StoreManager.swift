@@ -28,10 +28,10 @@ import SwiftUI
 
 // 订阅产品 ID - 必须与App Store Connect中配置的产品ID完全一致
 enum ProductID: String, CaseIterable {
-    case weeklySubscription = "com.seventinygame.app.weekly"     // 周订阅
-    case monthlySubscription = "com.seventinygame.app.monthly"   // 月订阅  
-    case yearlySubscription = "com.seventinygame.app.yearly"     // 年订阅
-    case lifetimeSubscription = "com.seventinygame.app.lifetime" // 终身版（一次性购买）
+    case weeklySubscription = "com.guessme.app.weekly"     // 周订阅
+    case monthlySubscription = "com.guessme.app.monthly"   // 月订阅  
+    case yearlySubscription = "com.guessme.app.yearly"     // 年订阅
+    case lifetimeSubscription = "com.guessme.app.alllifetime" // 终身版（一次性购买）
     
     var displayName: String {
         switch self {

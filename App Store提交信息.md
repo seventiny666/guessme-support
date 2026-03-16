@@ -72,7 +72,7 @@ com.seventinygame.app
 
 【游戏玩法】
 1. 选择喜欢的分类
-2. 选择游戏时长（30秒/60秒/90秒）
+2. 选择游戏时长（30秒/60秒/90秒/120秒）
 3. 一人看屏幕比划，另一人猜词
 4. 猜对点击✓得1分，不会可跳过
 5. 时间结束查看总得分
@@ -170,7 +170,7 @@ Subscription: $1.99/year with 3-day free trial
 
 HOW TO PLAY
 1. Choose a category
-2. Select game duration (30s/60s/90s)
+2. Select game duration (30s/60s/90s/120s)
 3. One person acts, the other guesses
 4. Tap ✓ for correct, skip if stuck
 5. Check your score when time's up
@@ -245,7 +245,7 @@ charades,party game,guess game,word game,family game,multiplayer,offline game,fu
 
 【游戏玩法】
 1. 在主界面选择任意分类（锁定的需要订阅）
-2. 选择游戏时长（30秒/60秒/90秒）
+2. 选择游戏时长（30秒/60秒/90秒/120秒）
 3. 点击"开始游戏"
 4. 一人看屏幕比划动作，另一人猜词
 5. 猜对点击✓按钮得1分，不会点击跳过按钮

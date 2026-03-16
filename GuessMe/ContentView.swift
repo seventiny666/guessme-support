@@ -66,6 +66,7 @@ struct GameRulesView: View {
                         .font(.system(size: horizontalSizeClass == .regular ? 27 : 16)) // iPhone恢复到16px
                         .foregroundColor(Color.adaptiveTextPrimary(for: colorScheme))
                         .multilineTextAlignment(.leading)
+                        .lineSpacing(horizontalSizeClass == .regular ? 27 : 16) // 2倍行间距：iPad 27px, iPhone 16px
                         .padding(.horizontal, horizontalSizeClass == .regular ? 0 : 30) // iPhone减少到30px
                 }
                 .frame(height: horizontalSizeClass == .regular ? 315 : 220) // iPhone减少到220px
@@ -451,6 +452,27 @@ struct ContentView: View {
     private var bottomButtons: some View {
         VStack(spacing: 15) {
             HStack(spacing: horizontalSizeClass == .regular ? 40 : 15) {
+                // 升级VIP按钮 - 根据订阅状态调整
+                Button(action: { 
+                    if !storeManager.hasProVersion {
+                        showPurchaseView = true 
+                    }
+                    // 如果已订阅，按钮不执行任何操作
+                }) {
+                    HStack(spacing: horizontalSizeClass == .regular ? 8 : 6) {
+                        Text("👑").font(.system(size: horizontalSizeClass == .regular ? 18 : 16))
+                        Text(storeManager.hasProVersion ? 
+                             languageManager.localizedString("pro_activated") : 
+                             languageManager.localizedString("upgrade_to_pro"))
+                            .font(.system(size: horizontalSizeClass == .regular ? 20 : 16, weight: .bold))
+                    }
+                    .foregroundColor(.white)
+                    .frame(width: horizontalSizeClass == .regular ? 360 : 165, height: horizontalSizeClass == .regular ? 68 : 50)
+                    .background(storeManager.hasProVersion ? Color.gray : Color.orange) // 已订阅显示灰色，未订阅显示橙色
+                    .cornerRadius(12)
+                }
+                .disabled(storeManager.hasProVersion) // 已订阅时禁用按钮
+                
                 Button(action: {
                     if storeManager.hasProVersion {
                         showCustomCategory = true
@@ -473,6 +495,7 @@ struct ContentView: View {
                     } else {
                         // 原有布局（iPhone 和 iPad未订阅用户）
                         HStack {
+                            // 只有未订阅用户才显示🔒图标
                             if !storeManager.hasProVersion {
                                 Text("🔒").font(.system(size: horizontalSizeClass == .regular ? 16 : 14))
                             }
@@ -480,22 +503,8 @@ struct ContentView: View {
                                 .font(.system(size: horizontalSizeClass == .regular ? 20 : 16, weight: .medium))
                         }
                         .foregroundColor(.white)
-                        .frame(width: horizontalSizeClass == .regular ? 360 : (storeManager.hasProVersion ? 245 : 165), height: horizontalSizeClass == .regular ? 68 : 50)
-                        .background(Color.green)
-                        .cornerRadius(12)
-                    }
-                }
-                
-                if !storeManager.hasProVersion {
-                    Button(action: { showPurchaseView = true }) {
-                        HStack(spacing: horizontalSizeClass == .regular ? 8 : 6) {
-                            Text("👑").font(.system(size: horizontalSizeClass == .regular ? 18 : 16))
-                            Text(languageManager.localizedString("upgrade_to_pro"))
-                                .font(.system(size: horizontalSizeClass == .regular ? 20 : 16, weight: .bold))
-                        }
-                        .foregroundColor(.white)
                         .frame(width: horizontalSizeClass == .regular ? 360 : 165, height: horizontalSizeClass == .regular ? 68 : 50)
-                        .background(Color.orange)
+                        .background(storeManager.hasProVersion ? Color.green : Color.green) // 订阅用户绿色，未订阅用户也是绿色（因为点击后会跳转到购买页面）
                         .cornerRadius(12)
                     }
                 }
@@ -673,14 +682,29 @@ struct CategoryCard: View {
                         .stroke(Color(red: 0.0, green: 0.21, blue: 0.55), lineWidth: horizontalSizeClass == .regular ? 2 : 3) // iPad: 4 - 2 = 2
                 )
                 
-                if isLocked {
-                    VStack(spacing: 4) {
-                        Text("🔒")
-                            .font(.system(size: horizontalSizeClass == .regular ? 35 : 30))
-                        Text(languageManager.localizedString("pro_version"))
-                            .font(.system(size: horizontalSizeClass == .regular ? 14 : 12, weight: .bold))
-                            .foregroundColor(.appPrimary)
+                // VIP标签 - 放在右上角，无论是否锁定都显示
+                if category.isPro {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text("VIP")
+                                .font(.system(size: horizontalSizeClass == .regular ? 14 : 12, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, horizontalSizeClass == .regular ? 10 : 8)
+                                .padding(.vertical, horizontalSizeClass == .regular ? 5 : 4)
+                                .background(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.orange, Color.red]),
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .cornerRadius(horizontalSizeClass == .regular ? 8 : 6)
+                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 1)
+                        }
+                        Spacer()
                     }
+                    .padding(horizontalSizeClass == .regular ? 8 : 6)
                 }
             }
         }
@@ -716,14 +740,14 @@ struct CustomCategoryCard: View {
             }
             .frame(width: horizontalSizeClass == .regular ? 130 : 130) // iPad: 150 - 20 = 130
             .padding(.horizontal, horizontalSizeClass == .regular ? 20 : 15)
-            .frame(height: horizontalSizeClass == .regular ? 170 : 134) // iPad: 180 - 10 = 170
+            .padding(.vertical, horizontalSizeClass == .regular ? 0 : 15) // iPhone: 添加垂直padding与系统卡片一致
+            .frame(height: horizontalSizeClass == .regular ? 170 : 140) // 修复：iPhone高度改为140，与系统卡片一致
             .background(Color.white)
             .cornerRadius(horizontalSizeClass == .regular ? 25 : 20)
             .overlay(
                 RoundedRectangle(cornerRadius: horizontalSizeClass == .regular ? 25 : 20)
                     .stroke(Color(red: 0.7, green: 0.8, blue: 0.95), lineWidth: horizontalSizeClass == .regular ? 2 : 3) // iPad: 4 - 2 = 2
             )
-            .offset(y: horizontalSizeClass == .regular ? 0 : 4) // iPhone: 往下移动4px
         }
         .onLongPressGesture {
             showEditMenu = true
@@ -1066,6 +1090,124 @@ struct PrivacyPolicyView: View {
     }
 }
 
+// MARK: - TermsOfUseView
+struct TermsOfUseView: View {
+    @Binding var isPresented: Bool
+    @StateObject private var languageManager = LanguageManager.shared
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var body: some View {
+        ZStack {
+            Color.adaptiveOverlay(for: colorScheme)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    isPresented = false
+                }
+            
+            VStack(spacing: 0) {
+                // 标题栏
+                HStack {
+                    Button(action: {
+                        isPresented = false
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(Color.adaptiveTextSecondary(for: colorScheme))
+                    }
+                    
+                    Spacer()
+                    
+                    Text(languageManager.localizedString("terms_of_use_title"))
+                        .font(.system(size: horizontalSizeClass == .regular ? 24 : 20, weight: .bold))
+                        .foregroundColor(Color.adaptiveTextPrimary(for: colorScheme))
+                    
+                    Spacer()
+                    
+                    // 占位符保持对称
+                    Image(systemName: "xmark")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.clear)
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 20)
+                .background(Color.adaptiveCardBackground(for: colorScheme))
+                
+                // 内容区域
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text(languageManager.localizedString("terms_last_updated"))
+                            .font(.system(size: 14))
+                            .foregroundColor(Color.adaptiveTextSecondary(for: colorScheme))
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_1_title"),
+                            content: languageManager.localizedString("terms_section_1_content")
+                        )
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_2_title"),
+                            content: languageManager.localizedString("terms_section_2_content")
+                        )
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_3_title"),
+                            content: languageManager.localizedString("terms_section_3_content")
+                        )
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_4_title"),
+                            content: languageManager.localizedString("terms_section_4_content")
+                        )
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_5_title"),
+                            content: languageManager.localizedString("terms_section_5_content")
+                        )
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_6_title"),
+                            content: languageManager.localizedString("terms_section_6_content")
+                        )
+                        
+                        termsSection(
+                            title: languageManager.localizedString("terms_section_7_title"),
+                            content: languageManager.localizedString("terms_section_7_content")
+                        )
+                        
+                        Text(languageManager.localizedString("terms_copyright"))
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.adaptiveTextSecondary(for: colorScheme))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, 20)
+                    }
+                    .padding(24)
+                }
+                .background(Color.adaptiveCardBackground(for: colorScheme))
+            }
+            .frame(maxWidth: horizontalSizeClass == .regular ? 700 : .infinity)
+            .frame(maxHeight: horizontalSizeClass == .regular ? 800 : 700)
+            .background(Color.adaptiveCardBackground(for: colorScheme))
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
+            .padding(.horizontal, horizontalSizeClass == .regular ? 60 : 20)
+            .padding(.vertical, horizontalSizeClass == .regular ? 60 : 40)
+        }
+    }
+    
+    private func termsSection(title: String, content: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(.appPrimary)
+            
+            Text(content)
+                .font(.system(size: 15))
+                .foregroundColor(Color.adaptiveTextPrimary(for: colorScheme))
+                .lineSpacing(4)
+        }
+    }
+}
 
 
 // 自定义分类视图
@@ -2110,6 +2252,8 @@ struct PurchaseView: View {
     @StateObject private var languageManager = LanguageManager.shared
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State private var selectedPlan = 2 // 默认选择年订阅
+    @State private var showPrivacyPolicy = false
+    @State private var showTermsOfUse = false
     
     var plans: [(String, String, String?)] {
         [
@@ -2225,6 +2369,23 @@ struct PurchaseView: View {
         } message: {
             Text("您的购买已成功恢复！")
         }
+        .overlay(
+            Group {
+                if showPrivacyPolicy {
+                    PrivacyPolicyView(isPresented: $showPrivacyPolicy)
+                        .transition(.opacity)
+                        .zIndex(999)
+                }
+                
+                if showTermsOfUse {
+                    TermsOfUseView(isPresented: $showTermsOfUse)
+                        .transition(.opacity)
+                        .zIndex(999)
+                }
+            }
+        )
+        .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showPrivacyPolicy)
+        .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showTermsOfUse)
     }
     
     private var titleSection: some View {
@@ -2396,16 +2557,21 @@ struct PurchaseView: View {
     private var termsSection: some View {
         VStack(spacing: 8) {
             Text(languageManager.localizedString("terms_apply"))
-                .font(.system(size: horizontalSizeClass == .regular ? 12 : 10))
+                .font(.system(size: horizontalSizeClass == .regular ? 9 : 8)) // 非常小的字体
                 .foregroundColor(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
+                .lineLimit(nil)
             
             HStack(spacing: 20) {
-                Button(languageManager.localizedString("privacy_policy")) { }
+                Button(languageManager.localizedString("privacy_policy")) { 
+                    showPrivacyPolicy = true
+                }
                     .font(.system(size: horizontalSizeClass == .regular ? 12 : 10))
                     .foregroundColor(.white.opacity(0.8))
                 
-                Button(languageManager.localizedString("terms_of_use")) { }
+                Button(languageManager.localizedString("terms_of_use")) { 
+                    showTermsOfUse = true
+                }
                     .font(.system(size: horizontalSizeClass == .regular ? 12 : 10))
                     .foregroundColor(.white.opacity(0.8))
                 

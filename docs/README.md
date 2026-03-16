@@ -1,58 +1,58 @@
-# GuessMe - 你比划我猜
+# GuessMe
 
-一款简单有趣的聚会游戏应用，适合家人朋友聚会时玩耍。一人比划一人猜，考验默契，增进感情！
+A fun and simple party game perfect for family and friends gatherings. One person acts out while another guesses - test your chemistry and strengthen your bonds!
 
-## 📱 应用特性
+## 📱 App Features
 
-- 🎲 **10大分类** - 500+精选词汇
-- 📱 **多设备支持** - iPhone & iPad
-- 🔒 **隐私保护** - 完全离线运行
-- 🎯 **简单易用** - 无需学习，即开即玩
-- 👨‍👩‍👧‍👦 **家庭共享** - 订阅支持家庭共享
+- 🎲 **10 Categories** - 500+ curated words
+- 📱 **Multi-Device Support** - iPhone & iPad
+- 🔒 **Privacy Protection** - Completely offline
+- 🎯 **Easy to Use** - No learning required, play instantly
+- 👨‍👩‍👧‍👦 **Family Sharing** - Subscription supports Family Sharing
 
-## 🎮 如何开始
+## 🎮 How to Start
 
-1. 在主界面选择一个分类
-2. 选择游戏时长（30秒/60秒/90秒）
-3. 点击"开始游戏"
-4. 一人看屏幕比划，另一人猜词
-5. 猜对点击✓，不会点击跳过
+1. Select a category on the main screen
+2. Choose game duration (30s/60s/90s/120s)
+3. Tap "Start Game"
+4. One person acts out while another guesses
+5. Tap ✓ for correct answers, skip if needed
 
-## 💎 专业版
+## 💎 Pro Version
 
-订阅专业版可以解锁所有功能：
-- 解锁全部10个分类
-- 700+精选词汇库
-- 创建自定义分类
-- 无广告纯净体验
+Subscribe to Pro to unlock all features:
+- Unlock all 10 categories
+- 700+ curated word library
+- Create custom categories
+- Ad-free pure experience
 
-## 📞 技术支持
+## 📞 Technical Support
 
-- 📧 邮箱：784430005@qq.com
-- 🌐 网站：https://seventinygame.github.io/iosguessme/
+- 📧 Email: seventiny007@126.com
+- 🌐 Website: https://seventiny666.github.io/guessme-support/
 
-## 📄 法律文件
+## 📄 Legal Documents
 
-- [隐私政策](privacy.html)
-- [使用条款](terms.html)
-- [技术支持](index.html)
+- [Privacy Policy](privacy.html)
+- [Terms of Service](terms.html)
+- [Technical Support](index.html)
 
-## 🔐 隐私承诺
+## 🔐 Privacy Commitment
 
-- ✅ 应用完全离线运行，无需网络连接
-- ✅ 不收集任何个人信息
-- ✅ 不追踪用户行为
-- ✅ 无广告无打扰
-- ✅ 所有数据仅存储在您的设备本地
-- ✅ 不与任何第三方共享数据
+- ✅ App runs completely offline, no internet connection required
+- ✅ Does not collect any personal information
+- ✅ Does not track user behavior
+- ✅ No ads, no interruptions
+- ✅ All data stored locally on your device only
+- ✅ Does not share data with any third parties
 
-## 📋 订阅信息
+## 📋 Subscription Information
 
-- 前3天免费试用
-- 试用期后：每年1.99美元
-- 自动续订，可随时取消
-- 支持家庭共享
+- Free trial for the first 3 days
+- After trial: $1.99/year
+- Auto-renewal, can be cancelled anytime
+- Supports Family Sharing
 
-## © 版权
+## © Copyright
 
-© 2026 你比划我猜. 保留所有权利。
+© 2026 GuessMe. All rights reserved.

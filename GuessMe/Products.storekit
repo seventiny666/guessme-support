@@ -17,7 +17,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.seventinygame.app.lifetime",
+      "productID" : "com.guessme.app.alllifetime",
       "referenceName" : "Pro Lifetime",
       "type" : "NonRenewingSubscription"
     }
@@ -76,7 +76,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.seventinygame.app.weekly",
+          "productID" : "com.guessme.app.weekly",
           "recurringSubscriptionPeriod" : "P1W",
           "referenceName" : "Pro Weekly Subscription",
           "subscriptionGroupID" : "21482395",
@@ -106,7 +106,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.seventinygame.app.monthly",
+          "productID" : "com.guessme.app.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Pro Monthly Subscription",
           "subscriptionGroupID" : "21482395",
@@ -141,7 +141,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.seventinygame.app.yearly",
+          "productID" : "com.guessme.app.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Pro Yearly Subscription",
           "subscriptionGroupID" : "21482395",
